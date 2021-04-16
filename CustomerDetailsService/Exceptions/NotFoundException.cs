@@ -1,15 +1,13 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 
 namespace CustomerDetailsService.Exceptions
 {
-    public class NotFoundException : Exception
+    public class NotFoundException : HttpException
     {
-        public NotFoundException()
+        public NotFoundException(string message) : base(StatusCodes.Status404NotFound, message)
         {
-        }
 
-        public NotFoundException(string message) : base(message)
-        {
         }
     }
 }

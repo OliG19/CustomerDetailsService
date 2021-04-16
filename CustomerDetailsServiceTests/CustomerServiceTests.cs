@@ -13,6 +13,7 @@ namespace CustomerDetailsServiceTests
     {
         private readonly CustomerService _service;
         private readonly Mock<IRepository<EntityCustomer>> _repository;
+
         public CustomerServiceTests()
         {
             _repository = new Mock<IRepository<EntityCustomer>>();

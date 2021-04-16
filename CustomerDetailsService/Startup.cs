@@ -1,4 +1,5 @@
 using CustomerDetailsService.DAL;
+using CustomerDetailsService.Middleware;
 using CustomerDetailsService.Models.Entities;
 using CustomerDetailsService.Repositories;
 using CustomerDetailsService.Services;
@@ -28,9 +29,7 @@ namespace CustomerDetailsService
         {
 
             services.AddControllersWithViews();
-            var connection =
-                "Data Source=.\\sqlexpress;Initial Catalog=Customers;Integrated Security=True;Pooling=False";
-            services.AddDbContext<CustomerContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<CustomerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlDatabase")));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -58,7 +57,7 @@ namespace CustomerDetailsService
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseHttpException();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

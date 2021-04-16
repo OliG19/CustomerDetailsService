@@ -27,7 +27,7 @@ namespace CustomerDetailsService.DAL
                 .HasData(
                     new EntityCustomer
                     {
-                        Id = Guid.Parse("f6cb0b55-49eb-420f-8958-db501d3ddd31"),
+                        Id = Guid.NewGuid(),
                         Name = "John Doe",
                         Age = 30
                     },

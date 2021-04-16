@@ -33,17 +33,15 @@ namespace CustomerDetailsService.Repositories
 
         public async Task<EntityCustomer> GetAsync(string name)
         {
-            try
-            {
-                var customer = await _context.Customers
+            var customer = await _context.Customers
                     .FirstOrDefaultAsync(m => m.Name == name);
 
-                return customer;
-            }
-            catch
+            if (customer == null)
             {
-                throw new NotFoundException($"Customer {name} does not exist");
+                throw new NotFoundException( $"Customer {name} does not exist");
             }
+
+            return customer;
         }
 
         public async Task SaveAsync(DomainCustomer domainCustomer)

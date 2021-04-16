@@ -1,6 +1,6 @@
 ﻿import React, { Component, useState } from "react";
 import axios from "axios";
-import "./Customer.css";
+import "./AllCustomers.css";
 
 export class AllCustomers extends Component {
   constructor() {
@@ -32,7 +32,7 @@ export class AllCustomers extends Component {
 
   getCustomerhandler() {
     const { name } = this.state;
-    fetch(`api/customer/details?name=${name}`)
+    fetch(`api/customer/${name}`)
       .then((res) => res.json())
       .then((response) =>
         this.setState({
@@ -43,7 +43,7 @@ export class AllCustomers extends Component {
   }
 
   getAllCustomersHandler() {
-    fetch("api/customers")
+    fetch("api/Customer")
       .then((res) => res.json())
       .then((response) =>
         this.setState({ customers: response, showRefresh: true })
@@ -59,7 +59,7 @@ export class AllCustomers extends Component {
     };
 
     (async () => {
-      const rawResponse = await fetch("api/customer/create", {
+      const rawResponse = await fetch("api/Customer", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -73,17 +73,17 @@ export class AllCustomers extends Component {
   deleteCustomerHandler() {
     const { name } = this.state;
     (async () => {
-      await fetch("api/customer/delete", {
+      await fetch(`api/customer/${name}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(name),
       });
     })();
     this.setState({
       currentCustomer: {},
+      showCurrentCustomerTable: false,
     });
   }
 
@@ -163,20 +163,24 @@ export class AllCustomers extends Component {
             value="Retrieve"
           ></input>
         </div>
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Age Detail</th>
-            </tr>
-            <tr>
-              <td>{currentCustomer.name}</td>
-              <td>{currentCustomer.age}</td>
-              <td>{currentCustomer.ageDetail}</td>
-            </tr>
-          </tbody>
-        </table>
+        {showCurrentCustomerTable && (
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Age Detail</th>
+                </tr>
+                <tr>
+                  <td>{currentCustomer.name}</td>
+                  <td>{currentCustomer.age}</td>
+                  <td>{currentCustomer.ageDetail}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
         <button type="button" onClick={this.deleteCustomerHandler}>
           Delete Customer
         </button>

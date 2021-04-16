@@ -1,9 +1,8 @@
 ﻿using CustomerDetailsService.Models.Domains;
+using CustomerDetailsService.Models.Entities;
 using CustomerDetailsService.Repositories;
-using CustomerDetailsService.Strategies;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CustomerDetailsService.Models.Entities;
 
 namespace CustomerDetailsService.Services
 {

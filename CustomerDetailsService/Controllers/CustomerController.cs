@@ -28,7 +28,7 @@ namespace CustomerDetailsService.Controllers
         }
 
         [HttpGet]
-        [Route("api/customer/details")]
+        [Route("{name}")]
         public async Task<ActionResult<DomainCustomer>> Get(string name)
         {
             if (IsNameInvalid(name))
@@ -40,7 +40,6 @@ namespace CustomerDetailsService.Controllers
         }
 
         [HttpPost]
-        [Route("api/customer/create")]
         public async Task<ActionResult> Create([FromBody] DomainCustomer customer)
         {
             if (IsNameInvalid(customer.Name))
@@ -54,7 +53,8 @@ namespace CustomerDetailsService.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete([FromBody]string name)
+        [Route("{name}")]
+        public async Task<ActionResult> Delete(string name)
         {
             if (IsNameInvalid(name))
             {
