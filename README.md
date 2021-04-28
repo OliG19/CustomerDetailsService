@@ -14,7 +14,7 @@ Once a connection is established you are now in a position to run the migration 
 Once the databse is updated you can simply run the project and you will be presented with the Swagger UI showing each endpoint. This is a simple view of how you can invoke each endpoint.
 
 Another very plain and simple view has also been created using React and this page can be accessed by visiting https://localhost:{portnumber}/customers. Here you are presented with a single page which simple allows you
-to perform each CRUD process and view customers in a plain table. This UI is very simple and over time styling and better logic will be developed.
+to perform each CRUD process and view customers in a plain table. This UI is very simple and over time styling and better logic will most definitely need to be applied as currently it consists of one single monolithic component which is very ugly. This was simply to help others who have no knowledge of swagger.
 
 This Service overall demonstrates the use of:
 
